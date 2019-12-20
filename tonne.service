@@ -1,0 +1,26 @@
+[Unit]
+# https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+Description=tonne
+# StartLimitIntervalSec in recent systemd versions
+StartLimitInterval=0
+
+[Service]
+# https://www.freedesktop.org/software/systemd/man/systemd.service.html
+Type=simple
+User=intevation
+Group=intevation
+WorkingDirectory=/home/intevation/tonne
+ExecStart=/home/intevation/tonne/tonne
+Restart=always
+RestartSec=5s
+
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /var/log/tonne
+ExecStartPre=/bin/chown root:adm /var/log/tonne
+ExecStartPre=/bin/chmod 755 /var/log/tonne
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=tonne
+
+[Install]
+WantedBy=multi-user.target

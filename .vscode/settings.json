@@ -1,0 +1,6 @@
+{
+    "go.buildOnSave":"workspace",
+    "[go]": {
+        "editor.formatOnSave": true,
+    }
+}
